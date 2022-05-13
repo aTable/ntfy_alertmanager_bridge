@@ -1,0 +1,15 @@
+global:
+
+route:
+  group_by: ["alertname", "cluster", "service"]
+  group_wait: 20s
+  group_interval: 1m
+  repeat_interval: 20s
+  receiver: ntfy-servers
+
+receivers:
+  - name: "ntfy-servers"
+    webhook_configs:
+      - url: http://ntfy_alertmanager_bridge:30000/ntfy_alert?topic=.labels.topic&title=.annotations.summary&priority=.labels.priority|tonumber
+        send_resolved: true
+        max_alerts: 0

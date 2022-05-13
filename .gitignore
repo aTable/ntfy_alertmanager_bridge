@@ -1,0 +1,6 @@
+prometheus/**/*
+!prometheus/alerts/
+!prometheus/alerts/*
+!prometheus/prometheus.yml
+src/logs
+src/node_modules

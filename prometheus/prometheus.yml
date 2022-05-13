@@ -1,0 +1,29 @@
+# my global config
+global:
+  scrape_interval: 15s
+  evaluation_interval: 30s
+  # scrape_timeout is set to the global default (10s).
+
+rule_files:
+  - "alerts/*.alerts"
+
+scrape_configs:
+  - job_name: intentionally-broken
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["localhost"]
+  - job_name: prometheus
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["prometheus:9090"]
+  - job_name: alertmanager
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["alertmanager:9093"]
+
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets:
+            - "alertmanager:9093"

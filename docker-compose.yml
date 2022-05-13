@@ -1,0 +1,50 @@
+version: "3.7"
+
+services:
+
+  ntfy_alertmanager_bridge:
+    build: 
+      context: src
+      dockerfile: Dockerfile
+    container_name: ntfy_alertmanager_bridge
+    ports: 
+      - 30000:30000
+    environment: 
+      - NTFY_SERVER_ADDRESS=http://ntfy:80
+
+  alertmanager:
+    container_name: alertmanager
+    image: quay.io/prometheus/alertmanager:latest
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager/alertmanager/:/etc/alertmanager/
+      # - ./alertmanager/storage/:/alertmanager/
+    restart: always   
+    command:
+      - "--config.file=/etc/alertmanager/config.yml"
+
+  
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - ./prometheus/:/prometheus
+    ports:
+      - 9090:9090
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+    restart: always
+
+
+  ntfy:
+    container_name: ntfy
+    image: binwiederhier/ntfy 
+    ports:
+      - 30001:80
+    command: 
+      - serve
