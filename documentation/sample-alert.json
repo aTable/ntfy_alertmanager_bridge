@@ -1,0 +1,51 @@
+{
+  "url": "http://ntfy_alertmanager_bridge:30000/ntfy_alert?topic=.labels.topic&title=.annotations.summary&priority=.labels.priority|tonumber",
+  "headers": {
+    "host": "ntfy_alertmanager_bridge:30000",
+    "user-agent": "Alertmanager/0.24.0",
+    "content-length": "1279",
+    "content-type": "application/json"
+  },
+  "body": {
+    "receiver": "ntfy-servers",
+    "status": "firing",
+    "alerts": [
+      {
+        "status": "firing",
+        "labels": {
+          "alertname": "PrometheusTargetMissing",
+          "instance": "localhost:80",
+          "job": "intentionally-broken",
+          "priority": "4",
+          "topic": "ntfy_alertmanager_bridge_topic"
+        },
+        "annotations": {
+          "description": "A Prometheus target has disappeared. An exporter might be crashed.\n  VALUE = 0\n  LABELS = map[__name__:up instance:localhost:80 job:intentionally-broken]",
+          "summary": "Prometheus target missing (instance localhost:80)"
+        },
+        "startsAt": "2022-05-13T10:54:38.962Z",
+        "endsAt": "0001-01-01T00:00:00Z",
+        "generatorURL": "http://22c658993545:9090/graph?g0.expr=up+%3D%3D+0&g0.tab=1",
+        "fingerprint": "9f9db17ac206f706"
+      }
+    ],
+    "groupLabels": {
+      "alertname": "PrometheusTargetMissing"
+    },
+    "commonLabels": {
+      "alertname": "PrometheusTargetMissing",
+      "instance": "localhost:80",
+      "job": "intentionally-broken",
+      "priority": "4",
+      "topic": "ntfy_alertmanager_bridge_topic"
+    },
+    "commonAnnotations": {
+      "description": "A Prometheus target has disappeared. An exporter might be crashed.\n  VALUE = 0\n  LABELS = map[__name__:up instance:localhost:80 job:intentionally-broken]",
+      "summary": "Prometheus target missing (instance localhost:80)"
+    },
+    "externalURL": "http://aae23b8cf058:9093",
+    "version": "4",
+    "groupKey": "{}:{alertname=\"PrometheusTargetMissing\"}",
+    "truncatedAlerts": 0
+  }
+}

@@ -40,7 +40,7 @@ The [docker-compose.yml](docker-compose.yml) contains a prometheus+alertmanager+
 ...
 ```
 
-Do note this is just a prototype, it works there has not been effort to make it production friendly.
+Do note this is just a prototype, it works there has not been effort to make it production friendly. A sample payload of what alertmanager sends is [available here](documentation/sample-alert.json).
 
 ## Development
 
