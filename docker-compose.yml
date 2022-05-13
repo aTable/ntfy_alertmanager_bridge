@@ -12,6 +12,15 @@ services:
     environment: 
       - NTFY_SERVER_ADDRESS=http://ntfy:80
 
+  # ntfy_alertmanager_bridge:
+  #   image: ghcr.io/atable/ntfy_alertmanager_bridge:main 
+  #   container_name: ntfy_alertmanager_bridge_from_registry
+  #   ports: 
+  #     - 30000:30000
+  #   environment: 
+  #     - NTFY_SERVER_ADDRESS=http://ntfy:80
+
+
   alertmanager:
     container_name: alertmanager
     image: quay.io/prometheus/alertmanager:latest
